@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 10.0.x
 
@@ -57,7 +57,7 @@ jobs:
             throw "BizStock.Desktop.csproj was not found."
           }
 
-          dotnet restore $project.FullName --nologo
+          dotnet restore $project.FullName --nologo -p:RuntimeIdentifier=win-x64
 
       - name: Build BizStock WPF app
         shell: pwsh
@@ -67,7 +67,7 @@ jobs:
             throw "BizStock.Desktop.csproj was not found."
           }
 
-          dotnet build $project.FullName -c Release --nologo --no-restore
+          dotnet build $project.FullName -c Release --nologo --no-restore -p:RuntimeIdentifier=win-x64
 
       - name: Publish BizStock for Windows x64
         shell: pwsh
@@ -86,8 +86,8 @@ jobs:
             -r win-x64 `
             --self-contained true `
             -p:PublishSingleFile=true `
+            -p:RuntimeIdentifier=win-x64 `
             --nologo `
-            --no-build `
             -o $publishDir
 
           if (!(Test-Path (Join-Path $publishDir 'BizStock.exe'))) {
