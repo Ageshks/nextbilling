@@ -1,0 +1,164 @@
+name: Windows Installer
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-windows-installer:
+    runs-on: windows-latest
+
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Detect application version
+        id: app_version
+        shell: pwsh
+        run: |
+          $path = Join-Path $env:GITHUB_WORKSPACE 'Directory.Build.props'
+          if (-not (Test-Path $path)) {
+            throw "Directory.Build.props was not found."
+          }
+
+          [xml]$props = Get-Content $path
+          $version = $null
+          foreach ($group in $props.Project.PropertyGroup) {
+            if ($group.Version) {
+              $version = [string]$group.Version
+              break
+            }
+          }
+
+          if (-not $version) {
+            $version = '1.0.0'
+          }
+
+          "version=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          Write-Host "Detected application version: $version"
+
+      - name: Restore NuGet packages
+        shell: pwsh
+        run: |
+          $project = Get-ChildItem -Path "$env:GITHUB_WORKSPACE" -Recurse -Filter "BizStock.Desktop.csproj" | Select-Object -First 1
+          if (-not $project) {
+            throw "BizStock.Desktop.csproj was not found."
+          }
+
+          dotnet restore $project.FullName --nologo
+
+      - name: Build BizStock WPF app
+        shell: pwsh
+        run: |
+          $project = Get-ChildItem -Path "$env:GITHUB_WORKSPACE" -Recurse -Filter "BizStock.Desktop.csproj" | Select-Object -First 1
+          if (-not $project) {
+            throw "BizStock.Desktop.csproj was not found."
+          }
+
+          dotnet build $project.FullName -c Release --nologo --no-restore
+
+      - name: Publish BizStock for Windows x64
+        shell: pwsh
+        run: |
+          $project = Get-ChildItem -Path "$env:GITHUB_WORKSPACE" -Recurse -Filter "BizStock.Desktop.csproj" | Select-Object -First 1
+          if (-not $project) {
+            throw "BizStock.Desktop.csproj was not found."
+          }
+
+          $publishDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts/BizStock-win-x64-publish'
+          New-Item -ItemType Directory -Force -Path $publishDir | Out-Null
+
+          dotnet publish `
+            $project.FullName `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:PublishSingleFile=true `
+            --nologo `
+            --no-build `
+            -o $publishDir
+
+          if (!(Test-Path (Join-Path $publishDir 'BizStock.exe'))) {
+            throw "Required output BizStock.exe was not found in the publish folder."
+          }
+
+      - name: Install Inno Setup
+        shell: powershell
+        run: |
+          choco install innosetup -y --no-progress
+
+      - name: Compile installer
+        shell: pwsh
+        env:
+          APP_VERSION: ${{ steps.app_version.outputs.version }}
+        run: |
+          $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+          if (!(Test-Path $iscc)) {
+            throw "Inno Setup compiler not found at $iscc"
+          }
+
+          $scriptPath = Join-Path $env:GITHUB_WORKSPACE 'installer/BizStock.iss'
+          if (!(Test-Path $scriptPath)) {
+            throw "Installer script not found at $scriptPath"
+          }
+
+          $outputDir = Join-Path $env:GITHUB_WORKSPACE 'installer/output'
+          New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
+
+          & $iscc "/DAppVersion=$env:APP_VERSION" "/DSourceDir=$env:GITHUB_WORKSPACE\artifacts\BizStock-win-x64-publish" "/DOutputDir=$outputDir" $scriptPath
+
+          $installerPath = Join-Path $outputDir "BizStock-Setup-$env:APP_VERSION.exe"
+          if (!(Test-Path $installerPath)) {
+            throw "Installer executable was not created: $installerPath"
+          }
+
+          Copy-Item $installerPath -Destination (Join-Path $env:GITHUB_WORKSPACE "BizStock-Setup-$env:APP_VERSION.exe") -Force
+
+      - name: Validate final outputs
+        shell: pwsh
+        env:
+          APP_VERSION: ${{ steps.app_version.outputs.version }}
+        run: |
+          $publishPath = Join-Path $env:GITHUB_WORKSPACE 'artifacts/BizStock-win-x64-publish'
+          $installerPath = Join-Path $env:GITHUB_WORKSPACE "BizStock-Setup-$env:APP_VERSION.exe"
+
+          if (!(Test-Path $publishPath)) {
+            throw "Publish folder missing: $publishPath"
+          }
+
+          if (!(Test-Path (Join-Path $publishPath 'BizStock.exe'))) {
+            throw "BizStock.exe missing from publish output."
+          }
+
+          if (!(Test-Path $installerPath)) {
+            throw "Installer missing: $installerPath"
+          }
+
+          Write-Host "Publish output verified: $publishPath"
+          Write-Host "Installer verified: $installerPath"
+
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BizStock-Setup-${{ steps.app_version.outputs.version }}.exe
+          path: ${{ github.workspace }}/BizStock-Setup-${{ steps.app_version.outputs.version }}.exe
+          if-no-files-found: error
+
+      - name: Upload raw publish artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BizStock-win-x64-publish
+          path: ${{ github.workspace }}/artifacts/BizStock-win-x64-publish
+          if-no-files-found: error

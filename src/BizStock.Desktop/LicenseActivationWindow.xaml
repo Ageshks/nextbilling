@@ -1,0 +1,26 @@
+<Window x:Class="BizStock.Desktop.LicenseActivationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Activate BizStock" Height="420" Width="560" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Activate BizStock" FontSize="28" FontWeight="Bold" Margin="0,0,0,16"/>
+        <TextBlock Grid.Row="1" Text="Enter your product key to activate this installation." Margin="0,0,0,8"/>
+
+        <TextBox x:Name="LicenseKeyTextBox" Grid.Row="2" Height="36" FontSize="18" Text="BIZSTOCK-" Margin="0,0,0,12" VerticalContentAlignment="Center"/>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,16">
+            <Button x:Name="ActivateButton" Content="Activate" Width="160" Height="38" Margin="0,0,12,0" Click="ActivateButton_Click"/>
+            <Button x:Name="TrialButton" Content="Start Trial" Width="160" Height="38" Click="TrialButton_Click"/>
+        </StackPanel>
+
+        <TextBlock x:Name="StatusText" Grid.Row="4" TextWrapping="Wrap" Foreground="Crimson" FontWeight="SemiBold"/>
+    </Grid>
+</Window>

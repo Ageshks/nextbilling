@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+    <!-- The application layer depends on the EF Core abstractions (DbSet/IQueryable),
+         never on the concrete Infrastructure implementations. This keeps providers
+         (SQLite -> PostgreSQL/SQL Server) swappable without touching use cases. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.12" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BizStock.Domain\BizStock.Domain.csproj" />
+  </ItemGroup>
+</Project>

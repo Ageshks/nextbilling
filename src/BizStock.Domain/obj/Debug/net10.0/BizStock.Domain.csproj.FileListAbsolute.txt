@@ -1,0 +1,11 @@
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/obj/Debug/net10.0/BizStock.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/obj/Debug/net10.0/BizStock.Domain.AssemblyInfoInputs.cache
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/obj/Debug/net10.0/BizStock.Domain.AssemblyInfo.cs
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/obj/Debug/net10.0/BizStock.Domain.csproj.CoreCompileInputs.cache
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/bin/Debug/net10.0/BizStock.Domain.deps.json
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/bin/Debug/net10.0/BizStock.Domain.dll
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/bin/Debug/net10.0/BizStock.Domain.pdb
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/obj/Debug/net10.0/BizStock.Domain.dll
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/obj/Debug/net10.0/refint/BizStock.Domain.dll
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/obj/Debug/net10.0/BizStock.Domain.pdb
+/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Domain/obj/Debug/net10.0/ref/BizStock.Domain.dll

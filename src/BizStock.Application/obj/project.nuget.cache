@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "c34+BH/WHag=",
+  "success": true,
+  "projectFilePath": "/Users/macbeth/Downloads/software/nextbilling/src/BizStock.Application/BizStock.Application.csproj",
+  "expectedPackageFiles": [
+    "/Users/macbeth/.nuget/packages/fluentvalidation/12.1.1/fluentvalidation.12.1.1.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.entityframeworkcore/10.0.12/microsoft.entityframeworkcore.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.entityframeworkcore.abstractions/10.0.12/microsoft.entityframeworkcore.abstractions.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.entityframeworkcore.analyzers/10.0.12/microsoft.entityframeworkcore.analyzers.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.extensions.caching.abstractions/10.0.12/microsoft.extensions.caching.abstractions.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.extensions.caching.memory/10.0.12/microsoft.extensions.caching.memory.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.extensions.dependencyinjection/10.0.12/microsoft.extensions.dependencyinjection.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.12/microsoft.extensions.dependencyinjection.abstractions.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.extensions.logging/10.0.12/microsoft.extensions.logging.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.extensions.logging.abstractions/10.0.12/microsoft.extensions.logging.abstractions.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.extensions.options/10.0.12/microsoft.extensions.options.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.extensions.primitives/10.0.12/microsoft.extensions.primitives.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.netcore.app.runtime.win-x64/10.0.12/microsoft.netcore.app.runtime.win-x64.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/10.0.12/microsoft.aspnetcore.app.runtime.win-x64.10.0.12.nupkg.sha512",
+    "/Users/macbeth/.nuget/packages/microsoft.netcore.app.host.win-x64/10.0.12/microsoft.netcore.app.host.win-x64.10.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}

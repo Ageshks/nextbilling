@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BizStock.Application/BizStock.Application.csproj" />
+    <Project Path="src/BizStock.Desktop/BizStock.Desktop.csproj" />
+    <Project Path="src/BizStock.Domain/BizStock.Domain.csproj" />
+    <Project Path="src/BizStock.Infrastructure/BizStock.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BizStock.Application.Tests/BizStock.Application.Tests.csproj" />
+    <Project Path="tests/BizStock.Domain.Tests/BizStock.Domain.Tests.csproj" />
+    <Project Path="tests/BizStock.Integration.Tests/BizStock.Integration.Tests.csproj" />
+  </Folder>
+</Solution>

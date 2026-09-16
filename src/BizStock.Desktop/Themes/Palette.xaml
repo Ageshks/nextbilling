@@ -1,0 +1,67 @@
+<!--
+    Palette.xaml
+    Core colour and brush tokens for the BizStock shell. Every view references these
+    keys rather than literal colours so the whole application can be re-themed from
+    one place (and a light theme can be added later without touching the views).
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- ==== Surfaces ==== -->
+    <Color x:Key="SurfaceBaseColor">#FF11161D</Color>
+    <Color x:Key="SurfaceRaisedColor">#FF1A212B</Color>
+    <Color x:Key="SurfaceCardColor">#FF212A36</Color>
+    <Color x:Key="SurfaceHoverColor">#FF2A3543</Color>
+    <Color x:Key="SurfaceSidebarColor">#FF151C25</Color>
+    <Color x:Key="SurfaceHeaderColor">#FF1A212B</Color>
+
+    <SolidColorBrush x:Key="SurfaceBaseBrush" Color="{StaticResource SurfaceBaseColor}" />
+    <SolidColorBrush x:Key="SurfaceRaisedBrush" Color="{StaticResource SurfaceRaisedColor}" />
+    <SolidColorBrush x:Key="SurfaceCardBrush" Color="{StaticResource SurfaceCardColor}" />
+    <SolidColorBrush x:Key="SurfaceHoverBrush" Color="{StaticResource SurfaceHoverColor}" />
+    <SolidColorBrush x:Key="SurfaceSidebarBrush" Color="{StaticResource SurfaceSidebarColor}" />
+    <SolidColorBrush x:Key="SurfaceHeaderBrush" Color="{StaticResource SurfaceHeaderColor}" />
+
+    <!-- ==== Text ==== -->
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="#FFF2F5F8" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="#FFA9B6C6" />
+    <SolidColorBrush x:Key="TextMutedBrush" Color="#FF6F7F92" />
+    <SolidColorBrush x:Key="TextOnAccentBrush" Color="#FFFFFFFF" />
+
+    <!-- ==== Borders ==== -->
+    <SolidColorBrush x:Key="BorderBrushSoft" Color="#FF2C3846" />
+    <SolidColorBrush x:Key="BorderBrushStrong" Color="#FF3B4A5C" />
+
+    <!-- ==== Accent / semantic ==== -->
+    <Color x:Key="AccentColor">#FF2F81F7</Color>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="#FF4A93F8" />
+    <SolidColorBrush x:Key="AccentPressedBrush" Color="#FF1F6FE0" />
+    <SolidColorBrush x:Key="AccentSoftBrush" Color="#332F81F7" />
+
+    <SolidColorBrush x:Key="SuccessBrush" Color="#FF2EA043" />
+    <SolidColorBrush x:Key="SuccessSoftBrush" Color="#332EA043" />
+    <SolidColorBrush x:Key="WarningBrush" Color="#FFD29922" />
+    <SolidColorBrush x:Key="WarningSoftBrush" Color="#33D29922" />
+    <SolidColorBrush x:Key="DangerBrush" Color="#FFF85149" />
+    <SolidColorBrush x:Key="DangerSoftBrush" Color="#33F85149" />
+    <SolidColorBrush x:Key="InfoBrush" Color="#FF58A6FF" />
+
+    <!-- ==== Chart series ==== -->
+    <SolidColorBrush x:Key="ChartSalesBrush" Color="#FF2F81F7" />
+    <SolidColorBrush x:Key="ChartPurchasesBrush" Color="#FFA371F7" />
+    <SolidColorBrush x:Key="ChartExpensesBrush" Color="#FFF0883E" />
+    <SolidColorBrush x:Key="ChartProfitBrush" Color="#FF2EA043" />
+
+    <!-- ==== Metrics ==== -->
+    <CornerRadius x:Key="CardCornerRadius">8</CornerRadius>
+    <CornerRadius x:Key="ControlCornerRadius">4</CornerRadius>
+    <sys:Double x:Key="ControlHeight">34</sys:Double>
+    <sys:Double x:Key="RowHeight">32</sys:Double>
+
+    <!-- ==== Typography ==== -->
+    <FontFamily x:Key="AppFontFamily">Segoe UI</FontFamily>
+    <FontFamily x:Key="MonospaceFontFamily">Consolas</FontFamily>
+
+</ResourceDictionary>
